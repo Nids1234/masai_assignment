@@ -1,0 +1,32 @@
+Write a function to convert a character to lower case
+Use this function to convert a given word to lower case
+Use that function to convert an array of strings to array of lower case strings
+Sample Input ["MA", "SA", "I", "SCH", "OOL"]
+Sample Output ["ma", "sa", "i", "sch", "ool"]
+
+
+Js file
+
+// Function to convert a character to lowercase
+function charToLower(char) {
+  return char.toLowerCase();
+}
+
+// Function to convert a word to lowercase
+function wordToLower(word) {
+  return word.split('').map(charToLower).join('');
+}
+
+// Function to convert an array of strings to lowercase
+function arrayToLower(arr) {
+  return arr.map(wordToLower);
+}
+
+// Sample Input
+const inputArray = ["MA", "SA", "I", "SCH", "OOL"];
+
+// Use the functions to convert the input array to lowercase
+const outputArray = arrayToLower(inputArray);
+
+// Output the result
+console.log(outputArray);
