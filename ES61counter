@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter App</title>
+    <style>
+        #counter {
+            font-size: 24px;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Counter App</h1>
+    <p id="counter">0</p>
+    <button id="startStopButton">Start</button>
+    <button id="incrementButton">Increment</button>
+    <button id="decrementButton">Decrement</button>
+
+    <script>
+        let count = 0;
+        let interval;
+
+        const counterElement = document.getElementById("counter");
+        const startStopButton = document.getElementById("startStopButton");
+        const incrementButton = document.getElementById("incrementButton");
+        const decrementButton = document.getElementById("decrementButton");
+
+        function startCounter() {
+            interval = setInterval(() => {
+                count++;
+                counterElement.textContent = count;
+            }, 1000);
+        }
+
+        function stopCounter() {
+            clearInterval(interval);
+        }
+
+        function toggleCounter() {
+            if (startStopButton.textContent === "Start") {
+                startCounter();
+                startStopButton.textContent = "Stop";
+            } else {
+                stopCounter();
+                startStopButton.textContent = "Start";
+            }
+        }
+
+        function increment() {
+            stopCounter();
+            count++;
+            counterElement.textContent = count;
+        }
+
+        function decrement() {
+            stopCounter();
+            count--;
+            counterElement.textContent = count;
+        }
+
+        startStopButton.addEventListener("click", toggleCounter);
+        incrementButton.addEventListener("click", increment);
+        decrementButton.addEventListener("click", decrement);
+    </script>
+</body>
+</html>
