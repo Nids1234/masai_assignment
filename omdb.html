@@ -1,0 +1,58 @@
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OMDB Movies API</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script>
+      let OMDB_API_KEY = "d22a22de";
+      let rootElement = document.getElementById("root");
+
+      fetch(`http://www.omdbapi.com/?apikey=d22a22de&s=matrix`)
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (movieList) {
+          let movies = movieList.Search;
+          displayData(movies);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+
+      function displayData(data) {
+        data.forEach(function (movie) {
+          let movieCart = document.createElement("div");
+          movieCart.className = "movie-cart";
+
+          let movieImageElement = document.createElement("img");
+          movieImageElement.src = movie.Poster;
+
+          let movieNameElement = document.createElement("p");
+          movieNameElement.textContent = movie.title;
+
+          let goToMovieDatailsButton = document.createElement("button");
+
+          goToMovieDatailsButton.textContent = "GO to MOvie Details"
+          goToMovieDatailsButton.onclick = function () {
+            // saving indbID to lacal Storage
+            localStorage.setItem("indbID", movie.indbID);
+
+            // move to movie details page
+
+          };
+
+          movieCart.append(
+            movieImageElement,
+            movieNameElement,
+            goToMovieDatailsButton
+          );
+          rootElement.append(movieCart);
+        });
+      }
+    </script>
+  </body>
+</html>
