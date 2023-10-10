@@ -1,0 +1,96 @@
+<!-- Use this API https://fakestoreapi.com/products to fetch all products
+Display all products on DOM
+Your app should have sort and search functionality -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product List</title>
+    <style>
+        
+        #product-list {
+            display: flex;
+            flex-wrap: wrap;
+            color:red;
+            background-color: aqua;
+        }
+
+        .product-card {
+            border: 1px solid #ddd;
+            margin: 10px;
+            padding: 10px;
+            width: 300px;
+            border:2px solid black;
+           
+        }
+    </style>
+</head>
+<body>
+    <h1>Product List</h1>
+    <label for="sort-select">Sort by:</label>
+    <select id="sort-select">
+        <option value="default">Default</option>
+        <option value="price-asc">Price: Low to High</option>
+        <option value="price-desc">Price: High to Low</option>
+    </select>
+    <input type="text" id="search-input" placeholder="Search by name">
+    <div id="product-list"></div>
+
+    <script>
+        let  productList = document.getElementById('product-list');
+        let sortSelect = document.getElementById('sort-select');
+        let searchInput = document.getElementById('search-input');
+
+        let products = [];
+
+        // Fetch products from the API
+        fetch('https://fakestoreapi.com/products')
+            .then(response => response.json())
+            .then(data => {
+                products = data;
+                displayProducts(products);
+            });
+
+        // Display products on the DOM
+        <!-- function displayProducts(productsToDisplay) {
+            productList.innerHTML = '';
+
+            productsToDisplay.forEach(product => {
+                let productCard = document.createElement('div');
+                productCard.classList.add('product-card');
+                productCard.innerHTML = `
+                    <h3>${product.title}</h3>
+                    <p><strong>Price:</strong> $${product.price}</p>
+                    <p><strong>Category:</strong> ${product.category}</p>
+                `;
+                productList.appendChild(productCard);
+            });
+        }
+
+        // Sort products based on the selected option
+        sortSelect.addEventListener('change', () => {
+            const sortBy = sortSelect.value;
+
+            if (sortBy === 'price-asc') {
+                products.sort((a, b) => a.price - b.price);
+            } else if (sortBy === 'price-desc') {
+                products.sort((a, b) => b.price - a.price);
+            }
+
+            displayProducts(products);
+        });
+
+        // Filter products based on search input
+        searchInput.addEventListener('input', () => {
+            const searchTerm = searchInput.value.toLowerCase();
+            const filteredProducts = products.filter(product =>
+                product.title.toLowerCase().includes(searchTerm)
+            );
+
+            displayProducts(filteredProducts);
+        }); -->
+    </script>
+</body>
+</html>
